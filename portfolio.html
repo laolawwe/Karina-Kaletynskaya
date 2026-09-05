@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfolio | Karina Kaletynskaya</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600&family=Montserrat:wght@300;400;500&display=swap" rel="stylesheet">
+    <style>
+        .filter-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-bottom: 35px;
+            flex-wrap: wrap;
+        }
+        .filter-btn {
+            background: transparent;
+            border: 1px solid #ece6df;
+            padding: 10px 22px;
+            border-radius: 20px;
+            cursor: pointer;
+            font-family: inherit;
+            font-size: 14px;
+            color: #777777;
+            transition: all 0.2s ease;
+        }
+        .filter-btn:hover, .filter-btn.active {
+            background: #c29b61;
+            color: #fff;
+            border-color: #c29b61;
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <div class="container nav-container">
+            <a href="index.html" class="logo">Karina Kaletynskaya</a>
+            <nav class="nav">
+                <a href="index.html">O mnie</a>
+                <a href="services.html">Usługi</a>
+                <a href="portfolio.html">Portfolio</a>
+                <a href="opinie.html">Opinie</a>
+                <a href="index.html#contact">Kontakt</a>
+                <a href="login.html" class="btn-master">Panel</a>
+            </nav>
+        </div>
+    </header>
+
+    <section class="container">
+        <h1 class="section-title">PORTFOLIO</h1>
+        
+        <div class="filter-buttons">
+            <button class="filter-btn active" onclick="filterWorks('all', this)">Wszystkie</button>
+            <button class="filter-btn" onclick="filterWorks('manicure', this)">Manicure</button>
+            <button class="filter-btn" onclick="filterWorks('pedicure', this)">Pedicure</button>
+            <button class="filter-btn" onclick="filterWorks('design', this)">Wzory / Nail Art</button>
+        </div>
+
+        <div class="gallery" id="galleryContainer"></div>
+    </section>
+
+    <script>
+        let allWorks = [];
+
+        async function loadWorks() {
+            try {
+                const res = await fetch('/api/works');
+                allWorks = await res.json();
+                renderWorks(allWorks);
+            } catch (err) {
+                console.error('Błąd ładowania portfolio:', err);
+            }
+        }
+
+        function renderWorks(works) {
+            const container = document.getElementById('galleryContainer');
+            container.innerHTML = works.length ? '' : '<p style="text-align:center; color:#757575; grid-column: 1/-1;">Brak prac w tej kategorii.</p>';
+            
+            works.forEach(w => {
+                container.innerHTML += `
+                    <div class="card">
+                        <img src="/public/uploads/${w.image}" alt="${w.title || 'Manicure'}">
+                        <div class="card-info">
+                            <span>${w.title || 'Bez opisu'}</span>
+                            <span class="card-price">${w.price ? w.price : ''}</span>
+                        </div>
+                    </div>
+                `;
+            });
+        }
+
+        function filterWorks(category, btn) {
+            document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+
+            if (category === 'all') {
+                renderWorks(allWorks);
+            } else {
+                const filtered = allWorks.filter(w => w.category === category);
+                renderWorks(filtered);
+            }
+        }
+
+        loadWorks();
+    </script>
+</body>
+</html>

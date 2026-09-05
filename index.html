@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Karina Kaletynskaya | Beauty Studio</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600&family=Montserrat:wght@300;400;500&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <header class="header">
+        <div class="container nav-container">
+            <a href="index.html" class="logo">Karina Kaletynskaya</a>
+            <nav class="nav">
+                <a href="services.html">Usługi</a>
+                <a href="portfolio.html">Portfolio</a>
+                <a href="opinie.html">Opinie</a>
+                <a href="#contact">Kontakt</a>
+                <a href="login.html" class="btn-master">Panel</a>
+            </nav>
+        </div>
+    </header>
+
+   <section class="hero">
+        <div class="container">
+            <!-- Блок для квадратного фото мастера -->
+            <div class="hero-avatar-container">
+                <img src="master.jpg" alt="Karina Kaletynskaya" class="hero-avatar">
+            </div>
+
+            <h1 class="hero-title">KARINA KALETYNSKAYA</h1>
+            <div class="hero-subtitle">Nail Studio & Premium Care</div>
+            <a href="https://www.instagram.com/karinanails.b?utm_source=ig_web_button_share_sheet&stkn=ZDNlZDc0MzIxNw==" target="_blank" class="btn-outline">ZAPISZ SIĘ</a>
+        </div>
+    </section>
+
+    <section class="container" style="padding-top: 0;">
+        <h2 class="section-title">O MNIE</h2>
+        <div class="about-text">
+            <p>Nazywam się Karina Kaletyńska i jestem stylistką paznokci z ponad 12-letnim doświadczeniem w branży beauty.
+
+Stylizacja paznokci jest dla mnie połączeniem precyzji, estetyki i dbałości o każdy szczegół. Do każdej klientki podchodzę indywidualnie — zależy mi nie tylko na pięknym efekcie, ale również na komforcie i bezpieczeństwie podczas wizyty.
+
+Wykonuję manicure klasyczny i kombinowany, stylizację hybrydową, wzmacnianie oraz przedłużanie paznokci, a także french i różnego rodzaju zdobienia.
+
+Przez lata pracy zdobyłam szerokie doświadczenie i stale rozwijam swoje umiejętności, aby oferować stylizacje zgodne z aktualnymi trendami i oczekiwaniami moich klientek.
+
+Zapraszam na wizytę — wspólnie dobierzemy kształt, kolor i stylizację, która będzie najlepiej pasować do Ciebie.</p>
+        </div>
+    </section>
+
+    <section class="container faq-section">
+    <h2 class="section-title">Często zadawane pytania</h2>
+    
+    <div class="faq-item">
+        <div class="faq-question" onclick="toggleFaq(this)">1. Ile trwa wykonanie manicure?</div>
+        <div class="faq-answer">Wykonanie manicure trwa zazwyczaj od 1 do 2 godzin, w zależności od rodzaju stylizacji, długości paznokci i zdobień.</div>
+    </div>
+
+    <div class="faq-item">
+        <div class="faq-question" onclick="toggleFaq(this)">2. Czy manicure hybrydowy niszczy paznokcie?</div>
+        <div class="faq-answer">Prawidłowo wykonany manicure hybrydowy nie powinien niszczyć paznokci. Ważne jest odpowiednie przygotowanie płytki, bezpieczne usuwanie stylizacji i prawidłowa aplikacja produktów.</div>
+    </div>
+
+    <div class="faq-item">
+        <div class="faq-question" onclick="toggleFaq(this)">3. Jak często należy robić manicure?</div>
+        <div class="faq-answer">Najczęściej zaleca się wykonywanie manicure co 2–3 tygodnie. Termin zależy również od tempa wzrostu paznokci i rodzaju stylizacji.</div>
+    </div>
+
+    <div class="faq-item">
+        <div class="faq-question" onclick="toggleFaq(this)">4. Czy można zrobić manicure, jeśli mam bardzo krótkie paznokcie?</div>
+        <div class="faq-answer">Tak, oczywiście. Możemy dobrać odpowiednią długość i kształt do naturalnej płytki. Nawet na krótkich paznokciach można wykonać estetyczną stylizację.</div>
+    </div>
+
+    <div class="faq-item">
+        <div class="faq-question" onclick="toggleFaq(this)">5. Jak dbać o paznokcie po manicure?</div>
+        <div class="faq-answer">Warto regularnie stosować oliwkę do skórek i krem do rąk. Należy również unikać używania paznokci jako narzędzi i nie zrywać samodzielnie stylizacji.</div>
+    </div>
+
+    <div class="faq-item">
+        <div class="faq-question" onclick="toggleFaq(this)">6. Jak wygląda sterylizacja narzędzi?</div>
+        <div class="faq-answer">Bezpieczeństwo moich klientek jest absolutnym priorytetem. Wszystkie narzędzia wielorazowego użytku przechodzą rygorystyczny proces dezynfekcji, mycia w myjce ultradźwiękowej oraz sterylizacji w profesjonalnym autoklawie medycznym. Narzędzia są pakowane w pakiety sterylne, które otwierane są bezpośrednio przed Tobą.</div>
+    </div>
+</section>
+
+    <script>
+        function toggleFaq(el) {
+            const item = el.parentElement;
+            const isOpen = item.classList.contains('active');
+            document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('active'));
+            if (!isOpen) item.classList.add('active');
+        }
+    </script>
+
+    <section class="contact" id="contact">
+        <div class="container">
+            <h2 class="section-title">KONTAKT</h2>
+            <p class="contact-info">📍 Adres studia: Ul. Rogozina 60, 44-310, Radlin
+            </p>
+            <a href="https://www.instagram.com/karinanails.b?utm_source=ig_web_button_share_sheet&stkn=ZDNlZDc0MzIxNw==" target="_blank" class="btn-outline">INSTAGRAM</a>
+        </div>
+    </section>
+
+</body>
+</html>

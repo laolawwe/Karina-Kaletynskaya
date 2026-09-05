@@ -1,0 +1,508 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Panel Administratora | Karina Kaletynskaya</title>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-main: #fcfbfa;
+            --surface: #ffffff;
+            --accent: #c29b61;
+            --accent-hover: #b08a50;
+            --text-main: #2b2b2b;
+            --text-muted: #777777;
+            --border: #ece6df;
+            --danger: #d9534f;
+            --danger-hover: #c9302c;
+            --radius: 14px;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background-color: var(--bg-main);
+            color: var(--text-main);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .wrapper {
+            width: 100%;
+            max-width: 950px;
+        }
+
+        /* Карточки */
+        .card {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            padding: 40px;
+            box-shadow: 0 15px 35px rgba(194, 155, 97, 0.06);
+            animation: fadeIn 0.4s ease;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Экран входа */
+        #loginScreen {
+            max-width: 400px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        #loginScreen h2 {
+            font-size: 24px;
+            font-weight: 500;
+            margin-bottom: 8px;
+            color: var(--text-main);
+        }
+
+        #loginScreen p {
+            color: var(--text-muted);
+            font-size: 14px;
+            margin-bottom: 30px;
+        }
+
+        /* Шапка панели */
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid var(--border);
+            padding-bottom: 24px;
+            margin-bottom: 30px;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+
+        .header h2 {
+            font-size: 20px;
+            font-weight: 600;
+        }
+
+        .header-actions {
+            display: flex;
+            gap: 10px;
+            align-items: center;
+        }
+
+        /* Поля ввода */
+        .form-group {
+            margin-bottom: 20px;
+            text-align: left;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-size: 13px;
+            color: var(--text-muted);
+            font-weight: 500;
+        }
+
+        input[type="text"],
+        input[type="password"],
+        input[type="file"],
+        select {
+            width: 100%;
+            padding: 14px 16px;
+            background: #fdfcfa;
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            color: var(--text-main);
+            font-size: 14px;
+            font-family: inherit;
+            transition: all 0.2s ease;
+        }
+
+        input[type="text"]:focus,
+        input[type="password"]:focus,
+        select:focus {
+            outline: none;
+            border-color: var(--accent);
+            box-shadow: 0 0 0 3px rgba(194, 155, 97, 0.12);
+            background: #fff;
+        }
+
+        input[type="file"]::file-selector-button {
+            background: #f4ede4;
+            color: var(--text-main);
+            border: none;
+            padding: 8px 12px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-family: inherit;
+            margin-right: 12px;
+            transition: 0.2s;
+        }
+
+        input[type="file"]::file-selector-button:hover {
+            background: var(--accent);
+            color: #fff;
+        }
+
+        /* Кнопки */
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 12px 20px;
+            border: none;
+            border-radius: 10px;
+            font-size: 14px;
+            font-weight: 600;
+            font-family: inherit;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            text-decoration: none;
+        }
+
+        .btn-accent {
+            background-color: var(--accent);
+            color: #fff;
+            width: 100%;
+        }
+
+        .btn-accent:hover {
+            background-color: var(--accent-hover);
+            transform: translateY(-1px);
+        }
+
+        .btn-outline {
+            background: transparent;
+            color: var(--text-main);
+            border: 1px solid var(--border);
+            padding: 8px 14px;
+            font-size: 13px;
+        }
+
+        .btn-outline:hover {
+            border-color: var(--accent);
+            color: var(--accent);
+        }
+
+        .btn-danger-outline {
+            background: transparent;
+            color: var(--danger);
+            border: 1px solid rgba(217, 83, 79, 0.3);
+            padding: 8px 14px;
+            font-size: 13px;
+        }
+
+        .btn-danger-outline:hover {
+            background: var(--danger);
+            color: #fff;
+        }
+
+        .btn-danger-sm {
+            background: rgba(217, 83, 79, 0.08);
+            color: var(--danger);
+            border: none;
+            padding: 8px;
+            border-radius: 8px;
+            font-size: 12px;
+            width: 100%;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+
+        .btn-danger-sm:hover {
+            background: var(--danger);
+            color: #fff;
+        }
+
+        /* Сетка портфолио */
+        .section-title {
+            font-size: 16px;
+            font-weight: 600;
+            margin-bottom: 20px;
+            color: var(--text-main);
+        }
+
+        .works-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 20px;
+        }
+
+        .work-card {
+            background: #fdfcfa;
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            overflow: hidden;
+            padding: 12px;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        .work-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 8px 20px rgba(194, 155, 97, 0.1);
+        }
+
+        .work-card img {
+            width: 100%;
+            height: 160px;
+            object-fit: cover;
+            border-radius: 8px;
+            margin-bottom: 10px;
+        }
+
+        .work-info {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 10px;
+            font-size: 13px;
+        }
+
+        .work-title {
+            color: var(--text-muted);
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            max-width: 110px;
+        }
+
+        .work-price {
+            font-weight: 600;
+            color: var(--accent);
+            background: #f4ede4;
+            padding: 2px 6px;
+            border-radius: 4px;
+        }
+
+        .empty-state {
+            text-align: center;
+            padding: 40px;
+            color: var(--text-muted);
+            font-size: 14px;
+            background: #fdfcfa;
+            border-radius: 10px;
+            border: 1px dashed var(--border);
+        }
+
+        .upload-grid {
+            display: grid;
+            grid-template-columns: 2fr 1.5fr 1fr 1fr;
+            gap: 15px;
+        }
+
+        @media (max-width: 768px) {
+            .upload-grid {
+                grid-template-columns: 1fr;
+            }
+            .card {
+                padding: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="wrapper">
+        <!-- ЭКРАН ВХОДА -->
+        <div id="loginScreen" class="card">
+            <h2>Panel Administratora</h2>
+            <p>Zaloguj się, aby zarządzać salonem</p>
+            <form id="loginForm">
+                <div class="form-group">
+                    <input type="text" id="loginUser" placeholder="Login" required>
+                </div>
+                <div class="form-group">
+                    <input type="password" id="loginPass" placeholder="Hasło" required>
+                </div>
+                <button type="submit" class="btn btn-accent">Wejdź do panelu</button>
+            </form>
+        </div>
+
+        <!-- ПАНЕЛЬ УПРАВЛЕНИЯ -->
+        <div id="adminPanel" class="card" style="display: none;">
+            <div class="header">
+                <h2>Zarządzanie Portfolio</h2>
+                <div class="header-actions">
+                    <a href="/" target="_blank" class="btn btn-outline">Zobacz stronę ↗</a>
+                    <button onclick="logout()" class="btn btn-danger-outline">Wyloguj się</button>
+                </div>
+            </div>
+
+            <!-- Форма добавления -->
+            <form id="addWorkForm" style="margin-bottom: 35px;">
+                <div class="upload-grid">
+                    <div class="form-group" style="margin-bottom: 0;">
+                        <label>Wybierz zdjęcie</label>
+                        <input type="file" id="workFile" accept="image/*" required>
+                    </div>
+                    <div class="form-group" style="margin-bottom: 0;">
+                        <label>Opis pracy</label>
+                        <input type="text" id="workTitle" placeholder="Np. Manicure hybrydowy">
+                    </div>
+                    <div class="form-group" style="margin-bottom: 0;">
+                        <label>Kategoria</label>
+                        <select id="workCategory">
+                            <option value="manicure">Manicure</option>
+                            <option value="pedicure">Pedicure</option>
+                            <option value="design">Wzory / Nail Art</option>
+                        </select>
+                    </div>
+                    <div class="form-group" style="margin-bottom: 0;">
+                        <label>Cena (zł)</label>
+                        <input type="text" id="workPrice" placeholder="Np. 120 zł">
+                    </div>
+                </div>
+                <button type="submit" class="btn btn-accent" style="margin-top: 20px; width: auto; padding: 12px 28px;">Dodaj do portfolio</button>
+            </form>
+
+            <div class="section-title">Twoje realizacje</div>
+            <div id="worksList" class="works-grid"></div>
+        </div>
+    </div>
+
+    <script>
+        const token = localStorage.getItem('token');
+        if (token) {
+            document.getElementById('loginScreen').style.display = 'none';
+            document.getElementById('adminPanel').style.display = 'block';
+            loadWorks();
+        }
+
+        document.getElementById('loginForm').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const username = document.getElementById('loginUser').value;
+            const password = document.getElementById('loginPass').value;
+
+            try {
+                const res = await fetch('/login', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ username, password })
+                });
+                const data = await res.json();
+
+                if (data.success) {
+                    localStorage.setItem('token', data.token);
+                    location.reload();
+                } else {
+                    alert('Nieprawidłowy login lub hasło');
+                }
+            } catch (err) {
+                console.error(err);
+                alert('Błąd połączenia z serwerem');
+            }
+        });
+
+        function logout() {
+            localStorage.removeItem('token');
+            location.reload();
+        }
+
+        async function loadWorks() {
+            try {
+                const res = await fetch('/api/works');
+                const works = await res.json();
+                const container = document.getElementById('worksList');
+                container.innerHTML = '';
+
+                if (works.length === 0) {
+                    container.innerHTML = '<div class="empty-state" style="grid-column: 1 / -1;">Brak dodanych prac w portfolio.</div>';
+                    return;
+                }
+
+                works.forEach(work => {
+                    container.innerHTML += `
+                        <div class="work-card">
+                            <img src="/public/uploads/${work.image}" alt="Praca">
+                            <div class="work-info">
+                                <span class="work-title" title="${work.title || ''}">${work.title || 'Bez opisu'}</span>
+                                <span class="work-price">${work.price ? work.price : ''}</span>
+                            </div>
+                            <button onclick="deleteWork('${work.id}', '${work.image}')" class="btn-danger-sm">Usuń</button>
+                        </div>
+                    `;
+                });
+            } catch (err) {
+                console.error('Błąd ładowania prac:', err);
+            }
+        }
+
+        document.getElementById('addWorkForm').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const fileInput = document.getElementById('workFile');
+            const titleInput = document.getElementById('workTitle').value;
+            const categoryInput = document.getElementById('workCategory').value;
+            const priceInput = document.getElementById('workPrice').value;
+
+            if (fileInput.files.length === 0) return;
+
+            const formData = new FormData();
+            formData.append('photo', fileInput.files[0]);
+
+            try {
+                const uploadRes = await fetch('/api/upload', {
+                    method: 'POST',
+                    body: formData
+                });
+                const uploadResult = await uploadRes.json();
+
+                if (!uploadResult.success) {
+                    alert('Błąd przesyłania pliku');
+                    return;
+                }
+
+                const authToken = localStorage.getItem('token');
+                await fetch('/api/works', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Authorization': `Bearer ${authToken}`
+                    },
+                    body: JSON.stringify({
+                        image: uploadResult.filename,
+                        title: titleInput,
+                        category: categoryInput,
+                        price: priceInput
+                    })
+                });
+
+                location.reload();
+            } catch (err) {
+                console.error(err);
+                alert('Wystąpił błąd');
+            }
+        });
+
+        async function deleteWork(id, filename) {
+            if (!confirm('Na pewno chcesz usunąć tę pracę?')) return;
+
+            const authToken = localStorage.getItem('token');
+            try {
+                await fetch(`/api/works/${id}`, {
+                    method: 'DELETE',
+                    headers: { 'Authorization': `Bearer ${authToken}` }
+                });
+
+                await fetch(`/api/photo/${filename}`, {
+                    method: 'DELETE'
+                });
+
+                location.reload();
+            } catch (err) {
+                console.error(err);
+                alert('Nie udało się usunąć');
+            }
+        }
+    </script>
+</body>
+</html>

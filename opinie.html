@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Opinie | Karina Kaletynskaya</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600&family=Montserrat:wght@300;400;500&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header class="header">
+        <div class="container nav-container">
+            <a href="index.html" class="logo">Karina Kaletynskaya</a>
+            <nav class="nav">
+                <a href="index.html">O mnie</a>
+                <a href="services.html">Usługi</a>
+                <a href="portfolio.html">Portfolio</a>
+                <a href="opinie.html">Opinie</a>
+                <a href="index.html#contact">Kontakt</a>
+                <a href="login.html" class="btn-master">Panel</a>
+            </nav>
+        </div>
+    </header>
+
+    <section class="container">
+        <h1 class="section-title">OPINIE KLIENTEK</h1>
+        
+        <form class="review-form" id="reviewForm">
+            <h3 style="margin-top:0; color:var(--accent-gold); font-family:var(--font-title); font-size:22px;">Zostaw opinię</h3>
+            <div class="form-group">
+                <label>Twoje Imię</label>
+                <input type="text" id="author" required>
+            </div>
+            <!-- НОВОЕ ПОЛЕ: E-mail для ограничения 1 отзыв в руки -->
+            <div class="form-group">
+                <label>Twój E-mail (nie będzie publikowany)</label>
+                <input type="email" id="email" placeholder="np. imie@gmail.com" required>
+            </div>
+            <div class="form-group">
+                <label>Ocena (1-5)</label>
+                <select id="rating">
+                    <option value="5">⭐⭐⭐⭐⭐ (5/5)</option>
+                    <option value="4">⭐⭐⭐⭐ (4/5)</option>
+                    <option value="3">⭐⭐⭐ (3/5)</option>
+                    <option value="2">⭐⭐ (2/5)</option>
+                    <option value="1">⭐ (1/5)</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label>Treść opinii</label>
+                <textarea id="text" rows="3" required></textarea>
+            </div>
+            <button type="submit" class="btn-outline" style="width:100%;">WYŚLIJ</button>
+        </form>
+
+        <div id="reviewsList" style="max-width:600px; margin:0 auto;"></div>
+    </section>
+
+    <script>
+        async function loadReviews() {
+            try {
+                const res = await fetch('/api/reviews');
+                const reviews = await res.json();
+                const list = document.getElementById('reviewsList');
+                list.innerHTML = '';
+                
+                reviews.forEach(r => {
+                    list.innerHTML += `
+                        <div class="review-card">
+                            <div class="review-user-info">
+                                <div class="review-avatar">${r.author ? r.author[0] : 'K'}</div>
+                                <div>
+                                    <div style="font-weight:600; font-size:15px;">${r.author}</div>
+                                    <div style="font-size:11px; color:#757575;">${r.date || ''}</div>
+                                </div>
+                            </div>
+                            <div style="color:#b89772; margin:10px 0; font-size:14px;">${'⭐'.repeat(r.rating)}</div>
+                            <div style="color:#757575; font-size:14px;">${r.text}</div>
+                        </div>
+                    `;
+                });
+            } catch (err) {
+                console.error('Błąd ładowania opinii:', err);
+            }
+        }
+
+        document.getElementById('reviewForm').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const author = document.getElementById('author').value;
+            const email = document.getElementById('email').value;
+            const rating = document.getElementById('rating').value;
+            const text = document.getElementById('text').value;
+
+            try {
+                const res = await fetch('/api/reviews', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ author, email, rating: Number(rating), text })
+                });
+
+                const data = await res.json();
+
+                if (data.success) {
+                    alert('Dziękujemy za Twoją opinię!');
+                    document.getElementById('reviewForm').reset();
+                    loadReviews();
+                } else {
+                    // Сервер вернет ошибку, если такой email уже есть в базе
+                    alert(data.message || 'Wystąpił błąd');
+                }
+            } catch (err) {
+                console.error(err);
+                alert('Błąd połączenia z serwerem');
+            }
+        });
+
+        loadReviews();
+    </script>
+</body>
+</html>

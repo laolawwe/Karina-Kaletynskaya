@@ -1,0 +1,415 @@
+:root {
+    --bg-color: #fbf9f7;
+    --card-bg: #ffffff;
+    --accent-gold: #b89772;
+    --accent-gold-hover: #967551;
+    --text-color: #2b2b2b;
+    --text-muted: #757575;
+    --font-title: 'Cormorant Garamond', serif;
+    --font-body: 'Montserrat', sans-serif;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    font-family: var(--font-body);
+    margin: 0;
+    padding: 0;
+    line-height: 1.6;
+    overflow-x: hidden;
+}
+
+.container {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 0 20px;
+    width: 100%;
+}
+
+.header {
+    padding: 20px 0;
+    border-bottom: 1px solid rgba(184, 151, 114, 0.2);
+    background: #ffffff;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+
+.nav-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.logo {
+    font-family: var(--font-title);
+    font-size: 20px;
+    letter-spacing: 2px;
+    color: var(--accent-gold);
+    text-decoration: none;
+    font-weight: 600;
+    text-transform: uppercase;
+}
+
+.nav {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 15px;
+}
+
+.nav a {
+    color: var(--text-color);
+    text-decoration: none;
+    font-size: 12px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    transition: 0.3s;
+}
+
+.nav a:hover {
+    color: var(--accent-gold);
+}
+
+.btn-master {
+    border: 1px solid var(--accent-gold) !important;
+    color: var(--accent-gold) !important;
+    padding: 5px 12px;
+    border-radius: 4px;
+}
+
+.btn-master:hover {
+    background: var(--accent-gold);
+    color: #ffffff !important;
+}
+
+section {
+    padding: 60px 0;
+}
+
+.section-title {
+    font-family: var(--font-title);
+    font-size: 36px;
+    color: var(--accent-gold);
+    letter-spacing: 2px;
+    text-align: center;
+    margin-bottom: 30px;
+    text-transform: uppercase;
+}
+
+.hero {
+    text-align: center;
+    padding: 80px 0 50px;
+}
+
+.hero-title {
+    font-family: var(--font-title);
+    font-size: 42px;
+    letter-spacing: 3px;
+    margin-bottom: 15px;
+}
+
+.hero-subtitle {
+    color: var(--accent-gold);
+    font-size: 13px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    margin-bottom: 30px;
+}
+
+.btn-outline {
+    display: inline-block;
+    border: 1px solid var(--accent-gold);
+    color: var(--accent-gold);
+    padding: 12px 28px;
+    text-decoration: none;
+    letter-spacing: 2px;
+    font-size: 12px;
+    text-transform: uppercase;
+    transition: 0.3s;
+    background: transparent;
+    cursor: pointer;
+    border-radius: 4px;
+    text-align: center;
+}
+
+.btn-outline:hover {
+    background: var(--accent-gold);
+    color: #ffffff;
+}
+
+.about-text {
+    max-width: 700px;
+    margin: 0 auto;
+    text-align: center;
+    color: var(--text-muted);
+    font-size: 15px;
+    line-height: 1.8;
+}
+
+.services-list {
+    max-width: 650px;
+    margin: 0 auto;
+}
+
+.service-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 18px 0;
+    border-bottom: 1px solid rgba(184, 151, 114, 0.2);
+    font-size: 15px;
+    gap: 15px;
+}
+
+.price {
+    color: var(--accent-gold);
+    font-weight: 500;
+    white-space: nowrap;
+}
+
+.gallery {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+    gap: 20px;
+}
+
+.card {
+    background: var(--card-bg);
+    border-radius: 8px;
+    overflow: hidden;
+    border: 1px solid rgba(184, 151, 114, 0.2);
+    box-shadow: 0 4px 15px rgba(0,0,0,0.03);
+}
+
+.card img {
+    width: 100%;
+    height: 280px;
+    object-fit: cover;
+    display: block;
+}
+
+.card-info {
+    padding: 15px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.card-price {
+    color: var(--accent-gold);
+    font-weight: 500;
+}
+
+.contact {
+    text-align: center;
+}
+
+.contact-info {
+    margin-bottom: 25px;
+    color: var(--text-muted);
+    font-size: 15px;
+}
+
+/* FAQ */
+.faq-section {
+    max-width: 700px;
+    margin: 0 auto;
+}
+
+.faq-item {
+    background: var(--card-bg);
+    border: 1px solid rgba(184, 151, 114, 0.2);
+    border-radius: 8px;
+    margin-bottom: 12px;
+    overflow: hidden;
+}
+
+.faq-question {
+    padding: 16px 20px;
+    font-size: 15px;
+    font-weight: 500;
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.faq-question::after {
+    content: '+';
+    color: var(--accent-gold);
+    font-size: 20px;
+    transition: transform 0.3s;
+}
+
+.faq-answer {
+    padding: 0 20px;
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease, padding 0.3s ease;
+    color: var(--text-muted);
+    font-size: 14px;
+}
+
+.faq-item.active .faq-answer {
+    padding: 0 20px 20px 20px;
+    max-height: 200px;
+}
+
+.faq-item.active .faq-question::after {
+    transform: rotate(45deg);
+}
+
+/* Формы и отзывы */
+.review-card {
+    background: var(--card-bg);
+    padding: 20px;
+    border-radius: 12px;
+    border: 1px solid rgba(184, 151, 114, 0.2);
+    margin-bottom: 15px;
+}
+
+.review-user-info {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.review-avatar {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: var(--accent-gold);
+    color: #ffffff;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.review-form {
+    max-width: 600px;
+    margin: 0 auto 40px;
+    background: var(--card-bg);
+    padding: 25px;
+    border-radius: 12px;
+    border: 1px solid rgba(184, 151, 114, 0.2);
+}
+
+.form-group {
+    margin-bottom: 15px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 5px;
+    font-size: 13px;
+    color: var(--accent-gold);
+}
+
+.form-group input, .form-group textarea, .form-group select {
+    width: 100%;
+    padding: 10px;
+    background: #fbf9f7;
+    border: 1px solid #e0d7cd;
+    color: var(--text-color);
+    border-radius: 4px;
+    font-family: var(--font-body);
+    font-size: 14px;
+}
+
+/* Мобильная адаптация навигации */
+@media screen and (max-width: 600px) {
+    .nav-container {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+    }
+    .nav {
+        justify-content: center;
+        gap: 10px;
+    }
+    .hero-title {
+        font-size: 32px;
+    }
+    .section-title {
+        font-size: 28px;
+    }
+}
+/* Стили для квадратного фото мастера */
+.hero-avatar-container {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 25px;
+}
+
+.hero-avatar {
+    width: 220px;
+    height: 220px;
+    border-radius: 16px; /* Делает углы фото аккуратно скругленными */
+    object-fit: cover; /* Гарантирует, что квадратное фото не сожмется */
+    border: 2px solid var(--accent-gold);
+    box-shadow: 0 8px 20px rgba(184, 151, 114, 0.25);
+}
+
+/* Адаптация для мобильных телефонов */
+@media screen and (max-width: 600px) {
+    .hero-avatar {
+        width: 180px;
+        height: 180px;
+    }
+}
+/* Стили для аккордеона FAQ */
+.faq-item {
+    cursor: pointer;
+    border-bottom: 1px solid rgba(184, 151, 114, 0.2);
+    padding: 15px 0;
+    transition: all 0.3s ease;
+}
+
+.faq-answer {
+    max-height: 0;
+    overflow: hidden;
+    opacity: 0;
+    transition: max-height 0.4s ease, opacity 0.4s ease;
+    margin-top: 0;
+}
+
+/* Когда класс active добавлен — ответ открывается */
+.faq-item.active .faq-answer {
+    max-height: 200px; /* Достаточная высота для текста */
+    opacity: 1;
+    margin-top: 10px;
+}
+
+/* Добавим небольшой знак плюс/стрелочку к вопросу для красоты */
+.faq-question::after {
+    content: ' +';
+    float: right;
+    color: var(--accent-gold, #b49772);
+    transition: transform 0.3s ease;
+}
+
+.faq-item.active .faq-question::after {
+    content: ' −';
+}
+.about-section {
+    font-family: 'Playfair Display', serif; /* Применяем красивый шрифт */
+    font-size: 18px;                        /* Делаем текст чуть крупнее и читаемее */
+    line-height: 1.6;                       /* Увеличиваем межстрочный интервал для легкости */
+    color: #333333;                         /* Мягкий цвет текста */
+}
+
+/* Красивое оформление заголовка в блоке «O mnie» */
+.about-section h2 {
+    font-family: 'Playfair Display', serif;
+    font-weight: 600;
+    letter-spacing: 1px;
+    margin-bottom: 20px;
+}
